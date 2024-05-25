@@ -8,21 +8,21 @@ public class Main {
         Agenda agenda = new Agenda();
 
         // Agregar contactos
-        agenda.agregarContacto("Mario", "123456789");
-        agenda.agregarContacto("Link", "987654321");
-        agenda.agregarContacto("Peach", "456789123");
-        agenda.agregarContacto("Zelda", "789123456");
-        agenda.agregarContacto("Luigi", "321654987" );
-        agenda.agregarContacto("Bowser", "654321987");
-        agenda.agregarContacto("Toad", "321987654");
-        agenda.agregarContacto("Yoshi, ", "654987321");
-        agenda.agregarContacto("Wario", "987321654");
-        agenda.agregarContacto("Donkey Kong", "6541231");
-        agenda.agregarContacto("Diddy Kong", "6541231");
-        agenda.agregarContacto("Dixie Kong", "6541231");
-        agenda.agregarContacto("Cranky Kong", "6541231");
-        agenda.agregarContacto("Funky Kong", "6541231");
-        agenda.agregarContacto("King newt", "6541231");
+//        agenda.agregarContacto("Mario", "123456789");
+//        agenda.agregarContacto("Link", "987654321");
+//        agenda.agregarContacto("Peach", "456789123");
+//        agenda.agregarContacto("Zelda", "789123456");
+//        agenda.agregarContacto("Luigi", "321654987" );
+//        agenda.agregarContacto("Bowser", "654321987");
+//        agenda.agregarContacto("Toad", "321987654");
+//        agenda.agregarContacto("Yoshi, ", "654987321");
+//        agenda.agregarContacto("Wario", "987321654");
+//        agenda.agregarContacto("Donkey Kong", "6541231");
+//        agenda.agregarContacto("Diddy Kong", "6541231");
+//        agenda.agregarContacto("Dixie Kong", "6541231");
+//        agenda.agregarContacto("Cranky Kong", "6541231");
+//        agenda.agregarContacto("Funky Kong", "6541231");
+//        agenda.agregarContacto("King newt", "6541231");
 
 
         // Mostrar contactos

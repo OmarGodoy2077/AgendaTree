@@ -1,5 +1,7 @@
 package org.example.Agenda;
 
+import java.time.LocalDate;
+
 public class Agenda {
     private NodoContacto raiz;
 
@@ -7,8 +9,8 @@ public class Agenda {
         this.raiz = null;
     }
 
-    public void agregarContacto(String nombre, String telefono) {
-        Contacto nuevoContacto = new Contacto(nombre, telefono);
+    public void agregarContacto(String nombre, Long telefono, String correoelectronico, LocalDate fechaNacimiento) {
+        Contacto nuevoContacto = new Contacto(nombre, telefono, correoelectronico, fechaNacimiento);
         if (this.raiz == null) {
             this.raiz = new NodoContacto(nuevoContacto);
         } else {
@@ -83,7 +85,6 @@ public class Agenda {
         }
         return actual;
     }
-
     public void mostrarContactos() {
         inOrden(this.raiz);
     }
