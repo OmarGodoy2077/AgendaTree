@@ -1,100 +1,89 @@
 package org.example.Agenda;
 
-import java.time.LocalDate;
+// Agenda.java
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Agenda {
     private NodoContacto raiz;
 
     public Agenda() {
-        this.raiz = null;
+        raiz = null;
     }
 
-    public void agregarContacto(String nombre, Long telefono, String correoelectronico, LocalDate fechaNacimiento) {
-        Contacto nuevoContacto = new Contacto(nombre, telefono, correoelectronico, fechaNacimiento);
-        if (this.raiz == null) {
-            this.raiz = new NodoContacto(nuevoContacto);
+    public void agregarContacto(Contacto contacto) {
+        raiz = agregarRecursivo(raiz, contacto);
+    }
+
+    private NodoContacto agregarRecursivo(NodoContacto actual, Contacto contacto) {
+        if (actual == null) {
+            return new NodoContacto(contacto);
+        }
+
+        if (contacto.getNombre().compareTo(actual.getContacto().getNombre()) < 0) {
+            actual.setIzquierda(agregarRecursivo(actual.getIzquierda(), contacto));
+        } else if (contacto.getNombre().compareTo(actual.getContacto().getNombre()) > 0) {
+            actual.setDerecha(agregarRecursivo(actual.getDerecha(), contacto));
         } else {
-            this.insertar(this.raiz, nuevoContacto);
+            // el nombre ya existe
+            return actual;
         }
-    }
 
-    private void insertar(NodoContacto padre, Contacto contacto) {
-        if (contacto.getNombre().compareTo(padre.getContacto().getNombre()) < 0) {
-            if (padre.getIzdo() == null) {
-                padre.setIzdo(new NodoContacto(contacto));
-            } else {
-                insertar(padre.getIzdo(), contacto);
-            }
-        } else if (contacto.getNombre().compareTo(padre.getContacto().getNombre()) > 0) {
-            if (padre.getDcho() == null) {
-                padre.setDcho(new NodoContacto(contacto));
-            } else {
-                insertar(padre.getDcho(), contacto);
-            }
-        }
+        return actual;
     }
 
     public Contacto buscarContacto(String nombre) {
-        return buscar(this.raiz, nombre);
+        return buscarRecursivo(raiz, nombre);
     }
 
-    private Contacto buscar(NodoContacto nodo, String nombre) {
-        if (nodo == null) {
+    private Contacto buscarRecursivo(NodoContacto actual, String nombre) {
+        if (actual == null) {
             return null;
         }
-        if (nombre.equals(nodo.getContacto().getNombre())) {
-            return nodo.getContacto();
-        } else if (nombre.compareTo(nodo.getContacto().getNombre()) < 0) {
-            return buscar(nodo.getIzdo(), nombre);
-        } else {
-            return buscar(nodo.getDcho(), nombre);
+
+        if (nombre.equals(actual.getContacto().getNombre())) {
+            return actual.getContacto();
+        }
+
+        return nombre.compareTo(actual.getContacto().getNombre()) < 0
+                ? buscarRecursivo(actual.getIzquierda(), nombre)
+                : buscarRecursivo(actual.getDerecha(), nombre);
+    }
+
+    public List<Contacto> buscar(Contacto criterios) {
+        List<Contacto> resultados = new ArrayList<>();
+        buscarRecursivoMultiple(raiz, criterios, resultados);
+        return resultados;
+    }
+
+    private void buscarRecursivoMultiple(NodoContacto actual, Contacto criterios, List<Contacto> resultados) {
+        if (actual == null) {
+            return;
+        }
+
+        Contacto contacto = actual.getContacto();
+        boolean coincide = (criterios.getNombre() == null || contacto.getNombre().equals(criterios.getNombre())) &&
+                (criterios.getTelefono() == null || contacto.getTelefono().equals(criterios.getTelefono())) &&
+                (criterios.getEmail() == null || contacto.getEmail().equals(criterios.getEmail()));
+
+        if (coincide) {
+            resultados.add(contacto);
+        }
+
+        buscarRecursivoMultiple(actual.getIzquierda(), criterios, resultados);
+        buscarRecursivoMultiple(actual.getDerecha(), criterios, resultados);
+    }
+
+    public void guardar(String archivo) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(archivo))) {
+            out.writeObject(raiz);
         }
     }
 
-    public void eliminarContacto(String nombre) {
-        this.raiz = eliminar(this.raiz, nombre);
-    }
-
-    private NodoContacto eliminar(NodoContacto nodo, String nombre) {
-        if (nodo == null) {
-            return null;
+    public void cargar(String archivo) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
+            raiz = (NodoContacto) in.readObject();
         }
-        if (nombre.compareTo(nodo.getContacto().getNombre()) < 0) {
-            nodo.setIzdo(eliminar(nodo.getIzdo(), nombre));
-        } else if (nombre.compareTo(nodo.getContacto().getNombre()) > 0) {
-            nodo.setDcho(eliminar(nodo.getDcho(), nombre));
-        } else {
-            if (nodo.getIzdo() == null) {
-                return nodo.getDcho();
-            } else if (nodo.getDcho() == null) {
-                return nodo.getIzdo();
-            }
-
-            NodoContacto temp = minValorNodo(nodo.getDcho());
-            nodo.getContacto().setTelefono(temp.getContacto().getTelefono());
-            nodo.getContacto().setNombre(temp.getContacto().getNombre());
-            nodo.setDcho(eliminar(nodo.getDcho(), temp.getContacto().getNombre()));
-        }
-        return nodo;
     }
-
-    private NodoContacto minValorNodo(NodoContacto nodo) {
-        NodoContacto actual = nodo;
-        while (actual.getIzdo() != null) {
-            actual = actual.getIzdo();
-        }
-        return actual;
-    }
-    public void mostrarContactos() {
-        inOrden(this.raiz);
-    }
-
-    private void inOrden(NodoContacto nodo) {
-        if (nodo != null) {
-            inOrden(nodo.getIzdo());
-            System.out.println("Nombre: " + nodo.getContacto().getNombre() + ", Teléfono: " + nodo.getContacto().getTelefono());
-            inOrden(nodo.getDcho());
-  }
-}
-
 }

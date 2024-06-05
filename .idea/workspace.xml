@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fbb0ede-160d-4e4d-954e-e969a8defb39" name="Changes" comment="">
+    <list default="true" id="6fbb0ede-160d-4e4d-954e-e969a8defb39" name="Changes" comment="true">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Agenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Agenda.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Contacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Contacto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Agenda/NodoContacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Agenda/NodoContacto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +26,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;OmarGodoy2077&quot;
+  }
+}</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="7f51d745-6f4d-4fab-a7bf-ff236735cc8e" />
+        <option name="url" value="https://github.com/OmarGodoy2077/AgendaTree.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -39,7 +54,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -69,6 +84,9 @@
       <updated>1716606811838</updated>
       <workItem from="1716606812881" duration="3533000" />
       <workItem from="1716642747008" duration="1423000" />
+      <workItem from="1717436958087" duration="1986000" />
+      <workItem from="1717455696691" duration="1907000" />
+      <workItem from="1717610161242" duration="833000" />
     </task>
     <servers />
   </component>
@@ -76,15 +94,6 @@
     <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.example.Agenda.NodoContacto" memberName="izdo" />

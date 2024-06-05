@@ -1,58 +1,37 @@
 package org.example.Agenda;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Contacto {
+public class Contacto implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String nombre;
-    private Long telefono;
+    private String telefono;
+    private String email;
 
-    private String correoelectronico;
-
-    private LocalDate fechaNacimiento;
-
-
-    public String getCorreoelectronico() {
-        return correoelectronico;
-    }
-
-    public void setCorreoelectronico(String correoelectronico) {
-        this.correoelectronico = correoelectronico;
-    }
-
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Contacto(String nombre, Long telefono, String correoelectronico, LocalDate fechaNacimiento) {
+    public Contacto(String nombre, String telefono, String email) {
         this.nombre = nombre;
         this.telefono = telefono;
-        this.correoelectronico = correoelectronico;
-        this.fechaNacimiento = fechaNacimiento;
-
-
+        this.email = email;
     }
-
-
 
     public String getNombre() {
         return nombre;
     }
 
-    public Long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
+    public String getEmail() {
+        return email;
     }
 
-    //hacer el set para nombre
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-        }
-
+    @Override
+    public String toString() {
+        return "Contacto{" +
+                "nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
