@@ -1,35 +1,35 @@
 package org.example.Agenda;
 
-// NodoContacto.java
 import java.io.Serializable;
 
 public class NodoContacto implements Serializable {
     private static final long serialVersionUID = 1L;
     private Contacto contacto;
-    private NodoContacto izquierda, derecha;
+    private NodoContacto izquierdo;
+    private NodoContacto derecho;
 
+    // Constructor, getters y setters
     public NodoContacto(Contacto contacto) {
         this.contacto = contacto;
-        izquierda = derecha = null;
     }
 
     public Contacto getContacto() {
         return contacto;
     }
 
-    public NodoContacto getIzquierda() {
-        return izquierda;
+    public NodoContacto getIzquierdo() {
+        return izquierdo;
     }
 
-    public void setIzquierda(NodoContacto izquierda) {
-        this.izquierda = izquierda;
+    public void setIzquierdo(NodoContacto izquierdo) {
+        this.izquierdo = izquierdo;
     }
 
-    public NodoContacto getDerecha() {
-        return derecha;
+    public NodoContacto getDerecho() {
+        return derecho;
     }
 
-    public void setDerecha(NodoContacto derecha) {
-        this.derecha = derecha;
+    public void setDerecho(NodoContacto derecho) {
+        this.derecho = derecho;
     }
 }

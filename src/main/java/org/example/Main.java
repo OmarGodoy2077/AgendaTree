@@ -1,35 +1,52 @@
 package org.example;
 import org.example.Agenda.Agenda;
 import org.example.Agenda.Contacto;
-
 import java.io.IOException;
-import java.util.List;
+import java.time.LocalDate;
 
-// Main.java
 public class Main {
+    private static final String RUTA_ARCHIVO = "C:\\Users\\Omar Godoy\\Music\\ProyectoFinal\\agenda.dat";
+
     public static void main(String[] args) {
         Agenda agenda = new Agenda();
-        agenda.agregarContacto(new Contacto("Juan", "123456789", "juan@example.com"));
-        agenda.agregarContacto(new Contacto("Ana", "987654321", "ana@example.com"));
-        agenda.agregarContacto(new Contacto("Luis", "555555555", "luis@example.com"));
 
-        System.out.println(agenda.buscarContacto("Ana"));
-        System.out.println(agenda.buscarContacto("Luis"));
-        System.out.println(agenda.buscarContacto("Pedro"));
 
-        // Búsqueda por múltiples criterios
-        Contacto criteriosBusqueda = new Contacto("Ana", null, "ana@example.com");
-        List<Contacto> resultados = agenda.buscar(criteriosBusqueda);
-        System.out.println("Resultados de búsqueda por criterios: " + resultados);
+        agenda.agregarContacto(new Contacto("Alice", 123456789L, "alice@example.com", LocalDate.of(1990, 1, 1)));
+        agenda.agregarContacto(new Contacto("Bob", 987654321L, "bob@example.com", LocalDate.of(1985, 5, 20)));
+        agenda.agregarContacto(new Contacto("Charlie", 123456789L, "charlie@gmail.com", LocalDate.of(2000, 10, 10)));
+        agenda.agregarContacto(new Contacto("Alice", 123456789L, "alice@gmail.com", LocalDate.of(1990, 1, 1)));
 
-        // Guardar y cargar
+
         try {
-            agenda.guardar("agenda.dat");
-            Agenda nuevaAgenda = new Agenda();
-            nuevaAgenda.cargar("agenda.dat");
-            System.out.println("Contactos después de cargar: " + nuevaAgenda.buscarContacto("Ana"));
+            agenda.guardarAgenda(RUTA_ARCHIVO);
+            System.out.println("Contactos guardados correctamente en " + RUTA_ARCHIVO);
+        } catch (IOException e) {
+            System.err.println("Error al guardar los contactos: " + e.getMessage());
+        }
+
+
+        try {
+            agenda.cargarAgenda(RUTA_ARCHIVO);
+            System.out.println("Contactos cargados correctamente desde " + RUTA_ARCHIVO);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("Error al cargar los contactos: " + e.getMessage());
+        }
+
+        System.out.println("Todos los contactos cargados:");
+        for (Contacto c : agenda.obtenerTodosLosContactos()) {
+            System.out.println(c);
+        }
+
+        // Buscar contactos por nombre
+        System.out.println("Buscar por nombre 'Alice':");
+        for (Contacto c : agenda.buscarContacto("Alice")) {
+            System.out.println(c);
+        }
+
+
+        System.out.println("Buscar por criterio múltiple (nombre 'Alice'):");
+        for (Contacto c : agenda.buscar(new Contacto(null, 123456789L, null, null))) {
+            System.out.println(c);
         }
     }
 }

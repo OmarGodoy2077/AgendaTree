@@ -1,6 +1,5 @@
 package org.example.Agenda;
 
-// Agenda.java
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,82 +7,93 @@ import java.util.List;
 public class Agenda {
     private NodoContacto raiz;
 
-    public Agenda() {
-        raiz = null;
-    }
-
     public void agregarContacto(Contacto contacto) {
-        raiz = agregarRecursivo(raiz, contacto);
+        raiz = agregarContactoRecursivo(raiz, contacto);
     }
 
-    private NodoContacto agregarRecursivo(NodoContacto actual, Contacto contacto) {
+    private NodoContacto agregarContactoRecursivo(NodoContacto actual, Contacto contacto) {
         if (actual == null) {
             return new NodoContacto(contacto);
         }
 
         if (contacto.getNombre().compareTo(actual.getContacto().getNombre()) < 0) {
-            actual.setIzquierda(agregarRecursivo(actual.getIzquierda(), contacto));
+            actual.setIzquierdo(agregarContactoRecursivo(actual.getIzquierdo(), contacto));
         } else if (contacto.getNombre().compareTo(actual.getContacto().getNombre()) > 0) {
-            actual.setDerecha(agregarRecursivo(actual.getDerecha(), contacto));
-        } else {
-            // el nombre ya existe
-            return actual;
+            actual.setDerecho(agregarContactoRecursivo(actual.getDerecho(), contacto));
         }
 
         return actual;
     }
 
-    public Contacto buscarContacto(String nombre) {
-        return buscarRecursivo(raiz, nombre);
-    }
-
-    private Contacto buscarRecursivo(NodoContacto actual, String nombre) {
-        if (actual == null) {
-            return null;
-        }
-
-        if (nombre.equals(actual.getContacto().getNombre())) {
-            return actual.getContacto();
-        }
-
-        return nombre.compareTo(actual.getContacto().getNombre()) < 0
-                ? buscarRecursivo(actual.getIzquierda(), nombre)
-                : buscarRecursivo(actual.getDerecha(), nombre);
-    }
-
-    public List<Contacto> buscar(Contacto criterios) {
+    public List<Contacto> buscarContacto(String criterio) {
         List<Contacto> resultados = new ArrayList<>();
-        buscarRecursivoMultiple(raiz, criterios, resultados);
+        buscarContactoRecursivo(raiz, criterio, resultados);
         return resultados;
     }
 
-    private void buscarRecursivoMultiple(NodoContacto actual, Contacto criterios, List<Contacto> resultados) {
+    private void buscarContactoRecursivo(NodoContacto actual, String criterio, List<Contacto> resultados) {
         if (actual == null) {
             return;
         }
 
-        Contacto contacto = actual.getContacto();
-        boolean coincide = (criterios.getNombre() == null || contacto.getNombre().equals(criterios.getNombre())) &&
-                (criterios.getTelefono() == null || contacto.getTelefono().equals(criterios.getTelefono())) &&
-                (criterios.getEmail() == null || contacto.getEmail().equals(criterios.getEmail()));
+            if (actual.getContacto().getNombre().equalsIgnoreCase(criterio) ||
+                    String.valueOf(actual.getContacto().getTelefono()).equalsIgnoreCase(criterio) ||
+                    actual.getContacto().getEmail().equalsIgnoreCase(criterio)) {
+                resultados.add(actual.getContacto());
+            }
 
-        if (coincide) {
-            resultados.add(contacto);
+            buscarContactoRecursivo(actual.getIzquierdo(), criterio, resultados);
+            buscarContactoRecursivo(actual.getDerecho(), criterio, resultados);
         }
 
-        buscarRecursivoMultiple(actual.getIzquierda(), criterios, resultados);
-        buscarRecursivoMultiple(actual.getDerecha(), criterios, resultados);
+    public List<Contacto> buscar(Contacto criterio) {
+        List<Contacto> resultados = new ArrayList<>();
+        buscarRecursivo(raiz, criterio, resultados);
+        return resultados;
     }
 
-    public void guardar(String archivo) throws IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(archivo))) {
-            out.writeObject(raiz);
+    private void buscarRecursivo(NodoContacto actual, Contacto criterio, List<Contacto> resultados) {
+        if (actual == null) {
+            return;
+        }
+
+        if ((criterio.getNombre() == null || actual.getContacto().getNombre().equalsIgnoreCase(criterio.getNombre())) &&
+                (criterio.getTelefono() == null || actual.getContacto().getTelefono().equals(criterio.getTelefono())) &&
+                (criterio.getEmail() == null || actual.getContacto().getEmail().equalsIgnoreCase(criterio.getEmail())) &&
+                (criterio.getFechaNacimiento() == null || actual.getContacto().getFechaNacimiento().equals(criterio.getFechaNacimiento()))) {
+            resultados.add(actual.getContacto());
+        }
+
+        buscarRecursivo(actual.getIzquierdo(), criterio, resultados);
+        buscarRecursivo(actual.getDerecho(), criterio, resultados);
+    }
+
+    public void guardarAgenda(String rutaArchivo) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
+            oos.writeObject(raiz);
         }
     }
 
-    public void cargar(String archivo) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
-            raiz = (NodoContacto) in.readObject();
+    public void cargarAgenda(String rutaArchivo) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
+            raiz = (NodoContacto) ois.readObject();
         }
+    }
+
+    public List<Contacto> obtenerTodosLosContactos() {
+        List<Contacto> contactos = new ArrayList<>();
+        obtenerTodosLosContactosRecursivo(raiz, contactos);
+        return contactos;
+    }
+
+    private void obtenerTodosLosContactosRecursivo(NodoContacto actual, List<Contacto> contactos) {
+        if (actual == null) {
+            return;
+        }
+
+        contactos.add(actual.getContacto());
+        obtenerTodosLosContactosRecursivo(actual.getIzquierdo(), contactos);
+        obtenerTodosLosContactosRecursivo(actual.getDerecho(), contactos);
     }
 }
+

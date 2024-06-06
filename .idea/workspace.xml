@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6fbb0ede-160d-4e4d-954e-e969a8defb39" name="Changes" comment="true">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Agenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Agenda.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Contacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Agenda/Contacto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Agenda/NodoContacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Agenda/NodoContacto.java" afterDir="false" />
@@ -52,21 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -86,12 +90,25 @@
       <workItem from="1716642747008" duration="1423000" />
       <workItem from="1717436958087" duration="1986000" />
       <workItem from="1717455696691" duration="1907000" />
-      <workItem from="1717610161242" duration="833000" />
+      <workItem from="1717610161242" duration="8598000" />
     </task>
+    <task id="LOCAL-00001" summary="true">
+      <option name="closed" value="true" />
+      <created>1717612525354</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717612525354</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
